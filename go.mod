@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/google/cel-go v0.10.1
 	github.com/google/cel-policy-templates-go v0.1.4
+	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106
 	google.golang.org/protobuf v1.27.1
 )
 
@@ -15,6 +16,5 @@ require (
 	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	github.com/stoewer/go-strcase v1.2.0 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

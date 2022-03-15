@@ -28,9 +28,7 @@ schema:
       type: string
 
 evaluator:
-  terms:
-    uid: event.Study.StudyInstanceUID
   productions:
-    - match: rule.tag.group == tag.group && rule.tag.element == tag.element && uid.startsWith("123")
+    - match: rule.tag.group == tag.group && rule.tag.element == tag.element && hasUID(event, uid)
       decision: filter.allow
       output: true

@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/google/cel-go v0.10.1
-	github.com/google/cel-policy-templates-go v0.1.3
+	github.com/google/cel-policy-templates-go v0.1.4
 	google.golang.org/protobuf v1.27.1
 )
 
@@ -18,5 +18,3 @@ require (
 	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
-
-replace github.com/google/cel-policy-templates-go => github.com/TristonianJones/cel-policy-templates-go v0.0.0-20220314183930-171d27ccd949

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"reflect"
+	"time"
 
 	"github.com/google/cel-go/cel"
 	"github.com/google/cel-go/checker/decls"
@@ -17,6 +18,7 @@ import (
 )
 
 func main() {
+	beg := time.Now()
 	Funcs := []*functions.Overload{
 		{
 			Operator: "has_uid_boolean",
@@ -108,10 +110,14 @@ func main() {
 		"uid": "123",
 	}
 
+	eval := time.Now()
 	decisions, err := engine.EvalAll(input)
 	if err != nil {
 		panic(err)
 	}
+	end := time.Now()
+	fmt.Printf("Eval time: %v\n", end.Sub(eval))
+	fmt.Printf("Comple + Eval time: %v\n", end.Sub(beg))
 
 	for _, dec := range decisions {
 		fmt.Printf("%v\n", dec)

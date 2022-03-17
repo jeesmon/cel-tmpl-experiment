@@ -5,9 +5,16 @@ option go_package = "github.com/jeesmon/cel-tmpl-experiment/events";
 package events;
 
 message StudyRevisionEvent {
-    DicomStudy Study = 1;
+    string source = 1;
+    DicomStudy study = 2;
 }
 
 message DicomStudy {
-    string StudyInstanceUID = 1;
+    string studyInstanceUID = 1;
+    repeated DicomSeries series = 2;
+}
+
+message DicomSeries {
+    string seriesInstanceUID = 1;
+    string modality = 2;
 }

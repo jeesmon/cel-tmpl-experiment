@@ -15,20 +15,47 @@
 apiVersion: policy.acme.co/v1
 kind: PolicyTemplate
 metadata:
-  name: StudyFilter
+  name: StudyProtocol
 schema:
   type: object
-  required:
-    - tag
   properties:
-    tag:
-      type: object
-      additionalProperties: {}
-    algo:
+    source:
       type: string
+    modality:
+      type: string
+    protocol:
+      type: array
+      items:
+        type: object
+        properties:
+          algo:
+            type: object
+            properties:
+              name:
+                type: string
+              scope:
+                type: string
+              result:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    source:
+                      type: string
+                    series:
+                      type: string
+                    sopClass:
+                      type: string
 
 evaluator:
+  ranges:
+  - index: idx
+    value: p
+    in: rule.protocol
   productions:
-    - match: rule.tag.group == tag.group && rule.tag.element == tag.element && hasUID(event, uid)
-      decision: filter.allow
+    - match: event.source == rule.source && hasModality(event, "series", rule.modality)
+      decision: protocol.decision
       output: true
+    - match: hasModality(event, p.algo.scope, rule.modality)
+      decision: algo.decision
+      output: p.algo

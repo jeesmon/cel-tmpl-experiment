@@ -13,16 +13,29 @@
 # limitations under the License.
 
 apiVersion: policy.acme.co/v1
-kind: StudyFilter
+kind: StudyProtocol
 metadata:
-  name: filters
-  namespace: acme
+  name: philips-mr-brain
+  namespace: default
 rules:
-  - tag:
-      group: g1
-      element: e1
-    algo: a1
-  - tag:
-      group: g2
-      element: e2
-    algo: a2
+- source: clientStorageSpace
+  modality: MR
+  protocol:
+  - algo:
+      name: algo1
+      scope: series
+      result:
+      - source: vendorStorageSpace
+        series: new
+        sopClass: SC
+- source: clientStorageSpace
+  modality: CT
+  protocol:
+  - algo:
+      name: algo2
+      scope: series
+      result:
+      - source: vendorStorageSpace
+        series: new
+        sopClass: SC
+
